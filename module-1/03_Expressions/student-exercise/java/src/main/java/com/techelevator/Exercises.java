@@ -23,11 +23,11 @@ public class Exercises {
 	public boolean monkeyTrouble(boolean aSmile, boolean bSmile) {
 		if ((aSmile && bSmile) || (!aSmile && !bSmile)) {
 			return true;
-		} else {
-			return false;
-		}
+				} else {
+					return false;
+					}
 
-	}
+					}
 
 	/*
 	 * 3. Given two int values, return their sum. Unless the two values are the
@@ -37,10 +37,10 @@ public class Exercises {
 	public int sumDouble(int a, int b) {
 		if (a != b) {
 			return a + b;
-		} else {
-			return 2 * (a + b);
-		}
-	}
+				} else {
+					return 2 * (a + b);
+						}
+							}
 
 	/*
 	 * 4. Given an int n, return the absolute difference between n and 21, except
@@ -50,11 +50,11 @@ public class Exercises {
 	public int diff21(int n) {
 		if (n < 21) {
 			return 21 - n;
-		} else {
-			return 2 * (n - 21);
+				} else {
+					return 2 * (n - 21);
 
-		}
-	}
+					}
+					}
 
 	/*
 	 * 5. We have a loud talking parrot. The "hour" parameter is the current hour
@@ -74,10 +74,10 @@ public class Exercises {
 	public boolean makes10(int a, int b) {
 		if ((a + b == 10) || (a >= 10 || b >= 10)) {
 			return true;
-		} else {
-			return false;
-		}
-	}
+				} else {
+					return false;
+					}
+						}
 
 	/*
 	 * 7. Given 2 int values, return true if one is negative and one is positive.
@@ -91,12 +91,12 @@ public class Exercises {
 	public boolean posNeg(int a, int b, boolean negative) {
 		if(!negative && ((a>=0 && b<0)||(a<0 && b>=0) )) {
 			return true;
-		}else if(a<0 && b<0 && negative) {
-			return true;
-		}else {
-			return false;
-		}
-	}
+				}else if(a<0 && b<0 && negative) {
+					return true;
+						}else {
+							return false;
+								}
+									}
 
 	/*
 	 * 8. Return true if the given non-negative number is a multiple of 3 or a
@@ -108,12 +108,10 @@ public class Exercises {
 	
 			if((n>0) &&(n%5==0 || n%3==0)) {
 				return true;
-		}else
-		{
-			return false;
-			}
-			
-		}
+					}else{
+							return false;
+						}	
+							}
 		
 		
 
@@ -126,11 +124,11 @@ public class Exercises {
 		
 		if((temp1 < 0 && temp2 >= 100)||(temp1 >= 100 && temp2 < 0)) {
 			return true;
-		}else {
-			return false;
-		}
+				}else {
+					return false;
+						}
 		
-	}
+							}
 
 	/*
 	 * 10. Given 2 int values, return true if either of them is in the range 10..20
@@ -140,11 +138,10 @@ public class Exercises {
 	public boolean in1020(int a, int b) {
 		if((a>=10 && a<=20)||(b>=10 && b<=20)) {
 			return true;
-			
-		}else {
-			return false;
-		}
-	}
+				}else {
+					return false;
+					}
+						}
 
 	/*
 	 * 11. We'll say that a number is "teen" if it is in the range 13..19 inclusive.
@@ -157,10 +154,10 @@ public class Exercises {
 		
 		if((a>=13&&a<=19)||(b>=13&&b<=19)||(c>=13&&c<=19)){
 			return true;
-		}else {
-			return false;
-		}
-	}
+				}else {
+					return false;
+				}
+					}
 
 	/*
 	 * 12. We'll say that a number is "teen" if it is in the range 13..19 inclusive.
@@ -174,10 +171,10 @@ public class Exercises {
 	public boolean loneTeen(int a, int b) {
 		if((a>=13 && a<=19) &&(b<13 || b>19)) {
 			return true;
-		}else if((b>=13 && b<=19) &&(a<13 || a>19)) {
-			return true;
-		}
-		return false;
+				}else if((b>=13 && b<=19) &&(a<13 || a>19)) {
+					return true;
+					}
+						return false;
 	}
 
 	/*
@@ -189,10 +186,10 @@ public class Exercises {
 		
 		if(a>=b && a>c) {
 			return a;
-		}else if(b>=a && b>c) {
-			return b;
-		}else {
-			return c;
+				}else if(b>=a && b>c) {
+					return b;
+						}else {
+							return c;
 		}                                          
 	}
 
@@ -311,15 +308,15 @@ public class Exercises {
 	public String yourCakeAndEatItToo(double mealAmount, boolean isBirthday) {
 		if((!isBirthday && mealAmount<=10)||(isBirthday && mealAmount<=5)) {
 			return "standard";
-		}else if((!isBirthday && mealAmount<=15)||(isBirthday&& mealAmount<=10)) {
-			return "special";
-		}else if((!isBirthday && mealAmount>15)||(isBirthday &&mealAmount>10)) {
-			return "ginormous";
-		}
-		else {
-			return "";
-		}
-	}
+				}else if((!isBirthday && mealAmount<=15)||(isBirthday&& mealAmount<=10)) {
+					return "special";
+						}else if((!isBirthday && mealAmount>15)||(isBirthday &&mealAmount>10)) {
+							return "ginormous";
+							}
+								else {
+									return "";
+										}
+											}
 
 	/*
 	 * 20. Given 2 ints, a and b, return their sum. However, sums in the range
@@ -597,9 +594,9 @@ public class Exercises {
 		    		}if( b == c) {
 		    			sum = sum - b - c;
 		    			}if (( a == b ) && (b==c))
-		    			{ sum = 0;
-		    			}
-		    			return sum;
+		    				{ sum = 0;
+		    					}
+		    					return sum;
 	}
 	
 
