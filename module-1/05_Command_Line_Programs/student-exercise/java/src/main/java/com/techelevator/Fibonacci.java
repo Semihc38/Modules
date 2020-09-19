@@ -7,10 +7,10 @@ public class Fibonacci {
 	public static void main(String[] args) {
 
 		
-		Scanner input=new Scanner(System.in);
+		Scanner scan=new Scanner(System.in);
 		System.out.print("Please enter a number to find the fibonacci series: ");
 		
-		int aNumber=input.nextInt();
+		int aNumber=scan.nextInt();
 		int num1=0;
 		int num2=1;
 		
