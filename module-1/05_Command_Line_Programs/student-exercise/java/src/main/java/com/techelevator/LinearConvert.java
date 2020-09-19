@@ -15,7 +15,6 @@ public class LinearConvert {
 		System.out.print("\nPlease enter a value for meter: ");
 		double meter=scan.nextDouble();
 		System.out.println(meter+" meter is "+ meter* 3.2808399+" feet.");
-		
 	}
 
 }

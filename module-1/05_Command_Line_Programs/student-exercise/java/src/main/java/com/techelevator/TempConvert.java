@@ -6,7 +6,6 @@ public class TempConvert {
 
 	public static void main(String[] args) {
 
-		
 		Scanner scan =new Scanner(System.in);
 		System.out.print("Please enter Celsius temperature: ");
 		int celsius=scan.nextInt();

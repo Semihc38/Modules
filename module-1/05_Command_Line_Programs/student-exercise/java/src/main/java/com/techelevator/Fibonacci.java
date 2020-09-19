@@ -18,7 +18,6 @@ public class Fibonacci {
 		
 		for(int i= 2; i<aNumber; i++) {
 			int sum=num1+num2;
-		
 			System.out.print(", "+ sum);
 			num1=num2;
 			num2=sum;
