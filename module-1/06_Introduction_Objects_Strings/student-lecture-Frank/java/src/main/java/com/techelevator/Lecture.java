@@ -13,7 +13,27 @@ public class Lecture {
 		 * String (i.e. characters appearing between two double quotes.  This
 		 * is not the case for most classes */
 
-		/* create an new instance of String using a literal */
+		/* create an new instance of String using a literal 
+		 * String  name= new String ();create a uninitialized String 
+		 * String  name=""Value"; create an initialized String 
+		 * String name="";
+		 * Object -Oriented Programming (OOP) Our focus is on the object not the process
+		 * We need objects to do anything
+		 * We we code, we code: object.method( parameters)
+		 * System.out.println("Some Stuff to display");
+		 * 
+		 * 
+		 * 
+		 * */
+		
+		String firstName="Semih";
+		
+		String lastName="Cetin";
+		String fullName=firstName+" "+ lastName;
+		System.out.println(fullName);
+		
+		
+		
 
 
 
@@ -39,6 +59,12 @@ public class Lecture {
 		 * .trim() - return the String with spaces removed from beginning and end of the String
 		 * .split(delimiter) - returns and array of strings containing the characters between the delimiter specified
 		 */
+		String name="rest";
+		name="sem";
+		System.out.println(name);
+	
+		
+		
 
 //--------------------------------------------------------------------------------------------------------	
 		
