@@ -44,6 +44,7 @@ public class Lecture {
 		System.out.println("******************************");
 		System.out.println();
 
+		
 		/* Commonly used methods:  stringname.methodname(parameters)
 		 *
 		 * .length() - return the number of characters in a String
@@ -59,9 +60,8 @@ public class Lecture {
 		 * .trim() - return the String with spaces removed from beginning and end of the String
 		 * .split(delimiter) - returns and array of strings containing the characters between the delimiter specified
 		 */
-		String name="rest";
-		name="sem";
-		System.out.println(name);
+		
+		
 	
 		
 		
@@ -110,6 +110,18 @@ public class Lecture {
 		System.out.println("****** USING .split ******");
 		System.out.println("**************************");
 		System.out.println();
+		
+		String weights="100, 200, 300";
+		String [] listOfWeights=weights.split(",");
+		int sumOfWeights=0;
+		for(int i=0; i<listOfWeights.length; i++) {
+			
+			System.out.println("Weigt at index:"  );
+		}
+		String name="yoav";
+		String name2=name;
+		System.out.println(name);
+		
 
 
 	}
