@@ -56,11 +56,11 @@ public class StackAndQueueExamples {
 			}
 			
 		System.out.println("\nNumber items in myStack - .size(): " + myStack.size());
-		System.out.println("  Getting Top of myStack - .pop(): " + myStack.pop());
-		System.out.println("Number items in myStack - .size(): " + myStack.size());
-		System.out.println("  Last element in Stack - .get(0): " + myStack.get(0));
-		System.out.println("   Top Element on Stack - .peek(): " + myStack.peek());
-		System.out.println("Number items in myStack - .size(): " + myStack.size());
+		System.out.println("  Getting Top of myStack - .pop(): 	 " + myStack.pop());
+		System.out.println("Number items in myStack - .size():   " + myStack.size());
+		System.out.println("  Last element in Stack - .get(0):   " + myStack.get(0));
+		System.out.println("   Top Element on Stack - .peek():   " + myStack.peek());
+		System.out.println("Number items in myStack - .size():   " + myStack.size());
 		
 		System.out.println("\nCloning myStack - .clone()");
 		Stack<String> clonedStack = (Stack<String>) myStack.clone();

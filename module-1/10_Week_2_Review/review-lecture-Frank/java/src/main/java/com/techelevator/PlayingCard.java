@@ -42,10 +42,10 @@ public class PlayingCard {
 	//********************************************************************************************
 	// Class member constants 
 	//********************************************************************************************
-	private final int MINVALUE    = 0;             // Minimum valid card value 
-	private final int MAXVALUE    = 13;            // Maximum valid card value
-	private final int JOKER_VALUE = 0;             // Joker value - No considered valid
-	private final int DEFAULT_VALUE = JOKER_VALUE; // Used if no value provided
+	private static final int MINVALUE    = 0;             // Minimum valid card value 
+	private static final int MAXVALUE    = 13;            // Maximum valid card value
+	private static final int JOKER_VALUE = 0;             // Joker value - No considered valid
+	private static final int DEFAULT_VALUE = JOKER_VALUE; // Used if no value provided
 		
 	//********************************************************************************************	
 	// Class member data - attributes of an class object
@@ -54,7 +54,7 @@ public class PlayingCard {
 	private int     value;   // 0=Joker, 11=Jack, 12=Queen, 13=King
 	private String  color;
 	private boolean showing;
-	private String  shape;   // read-only - no Setter or argument to a constructor
+	private static String  shape;   // read-only - no Setter or argument to a constructor
 	
 //********************************************************************************************
 // Constructors for the class
@@ -89,6 +89,7 @@ public class PlayingCard {
 	 * 2-arg constructor
 	 */
 		public PlayingCard(int value, String suit) {
+			
 			setValue(value);          // Use member method to set value in case value passed is invalid
 			this.suit       = suit;
 			this.showing    = false;
