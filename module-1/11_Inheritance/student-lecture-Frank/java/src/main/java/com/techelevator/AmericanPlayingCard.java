@@ -19,6 +19,8 @@ public class AmericanPlayingCard extends PlayingCard{
 
 	/**************************************************************************************************
 	 * Maps used to validate/limit suits, colors and value names for American Playing Cards
+	 * Maps are static because we only need one instance for all objects to use 
+	 * the data in the Maps will be same for all instances of objects and does not change for any object
 	 *************************************************************************************************/	
 	
 	private static Map<String,  String> suitMap  = new HashMap<String , String>();  
@@ -26,6 +28,10 @@ public class AmericanPlayingCard extends PlayingCard{
 	
 	/***************************************************************************************************
 	 *Invoke method to populate maps with valid suits, colors & value names for American Playing Cards
+	 *We need to define an anonymous static method to run the inializeMaps() method.
+	 *This will be run automatically when the process using this class is started
+	 *Normally a class method is run when it is used with an object of the class
+	 *static methods may be run without na object 
 	 **************************************************************************************************/	
 	
 	static {             // static method to initialize maps before are ever used
@@ -55,10 +61,13 @@ public class AmericanPlayingCard extends PlayingCard{
 	 * Initialize Maps to valid suit/color combinations and value names
 	 ***************************************************************************************************/	
 	private static void initializeMaps() {
+		//suitMap contains valid suits and their associated color
+		//if the gives us a suit not in this Map we know its; an invalid suit
 		suitMap.put("SPADES"  , "BLACK");
 		suitMap.put("CLUBS"   , "BLACK");
 		suitMap.put("DIAMONDS", "RED");
 		suitMap.put("HEARTS"  , "RED");
+		//ValueMap -associates word to values of the cards
 		
 		valueMap.put(0,"Joker");
 		valueMap.put(1,"Ace");
@@ -75,7 +84,9 @@ public class AmericanPlayingCard extends PlayingCard{
 		valueMap.put(12,"Queen");
 		valueMap.put(13,"King");
 	}
-
+	@Override
+	public String toString() {
+		return "AmeircanPlayingCard [value=" + getValue() + ", color=" + getColor() + ", suit=" + getSuit() + "]"; 
 	
-
+	}
 }

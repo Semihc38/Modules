@@ -24,6 +24,9 @@ public class UsePlayingCards {
 		else {
 			System.out.println("They are NOT equal");
 		}
+		ItalianPlayingCard frank=new ItalianPlayingCard(46,"Browns","Orange");
+		
+		System.out.println("Frank card is: "+ frank);
 	}
 
 }

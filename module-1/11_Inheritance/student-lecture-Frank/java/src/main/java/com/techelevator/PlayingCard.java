@@ -84,6 +84,7 @@ public class PlayingCard {
 	/***************************************************************************************
 	 * clone() method to create a copy of a PlayingCard from a PlayingCard
 	 ***************************************************************************************/
+	@Override
 	public PlayingCard clone() {
 		return new PlayingCard(this.value, this.suit, this.color);  // Use 3-arg ctor to create ne object
 	}
