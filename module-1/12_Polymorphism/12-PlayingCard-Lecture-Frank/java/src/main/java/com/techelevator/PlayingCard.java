@@ -12,6 +12,9 @@ public class PlayingCard {
 		this.suit  = suit;
 		this.color = color;
 	}
+	public void showCard() {
+		System.out.println(this.toString());
+	}
 	
 	public int getValue() {
 		return value;

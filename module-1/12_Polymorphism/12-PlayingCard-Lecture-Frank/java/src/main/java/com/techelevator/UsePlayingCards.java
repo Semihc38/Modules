@@ -46,7 +46,49 @@ public class UsePlayingCards {
 			
 		SwissPlayingCard aSwissCard4 = new SwissPlayingCard(11, "JASON");
 		System.out.println("anSwissCard4 is :");
-		aSwissCard4.showCard();		
+		aSwissCard4.showCard();	
+		/***********************************************************************************************************
+		 * Polymorphism examples follow
+		 *
+		 */
+		PlayingCard myCard=null;//super class object
+		
+		AmericanPlayingCard dougCard=new AmericanPlayingCard(1,"SPADES");	//subclass object to super class object
+		ItalianPlayingCard melissaCard=new ItalianPlayingCard(10,"COINS");	//subclass object to super class object
+		SwissPlayingCard codyCard=new SwissPlayingCard(12,"BALLS");			//subclass object to super class object
+		
+		myCard=melissaCard;
+		myCard.showCard();//super class object.methodName()
+		
+		
+		System.out.println("\n --- using polymorphism with an Array example----");
+		
+		PlayingCard[] cardArray=new PlayingCard[5];// define an array of super class objects
+		
+		cardArray[0]=dougCard;
+		cardArray[1]=new SwissPlayingCard(1,"ACORNS");
+		cardArray[2]=codyCard;
+		cardArray[3]=melissaCard;
+		cardArray[4]=new ItalianPlayingCard(10,"SWORDS");
+		
+		
+		for(int i=0; i<cardArray.length; i++) {// Loop through the array one element at a time
+			cardArray[i].showCard();			// use the current element to run showCard() for the subclass
+		}
+	//Calling a method with a subclass object
+		PlayingCard anotherCard =null;
+		
+		anotherCard=melissaCard;
+		
+		displayCard(codyCard);
+		
+		displayCard(melissaCard);
+		
+		anotherCard =new AmericanPlayingCard(6,"HEARTS");
+	}
+	public static void displayCard(PlayingCard aCard) { // method receiving a super class object
+		System.out.println("-------in the displayCard method-------------");
+		aCard.showCard();  //
 	}
 
 }

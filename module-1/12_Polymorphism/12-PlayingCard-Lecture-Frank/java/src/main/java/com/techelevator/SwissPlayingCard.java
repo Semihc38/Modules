@@ -54,7 +54,7 @@ public class SwissPlayingCard extends PlayingCard {
 		valueMap.put(10,"Banner");
 		valueMap.put(11,"Under");
 		valueMap.put(12,"Ober");
-		valueMap.put(13,"König");
+		valueMap.put(13,"Konig");
 	}
 	
 	@Override

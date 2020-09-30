@@ -1,10 +1,12 @@
 package com.techelevator;
 
-public class PlayingCard {
+//this is abstract class we don't want to allow instantiation of generic PlayingCard
+//we do want to define the data and basic behaviors of a PlayingCard
+public abstract class PlayingCard {//adding abstract to the class header makes it an abstract class
 	
-	private int value;    
-	private String color;    
-	private String suit;     
+	protected int value;    
+	protected String color;    
+	protected String suit;     //protected allows one level of subclass below to access the superclass
 	
 	
 	public PlayingCard(int value, String suit, String color) {
@@ -61,8 +63,5 @@ public class PlayingCard {
 		return true;
 	}
 
-	public void showCard() {   // Eclipse generated method - does nothing
-		// TODO Auto-generated method stub
-		
-	}
+	public abstract void showCard(); 
 }

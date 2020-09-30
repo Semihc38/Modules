@@ -62,7 +62,7 @@ public class AmericanPlayingCard extends PlayingCard{
 	public String toString() {
 		return "AmericanPlayingCard: " 
 	          +"Value: "  + valueMap.get(getValue())
-	          +" - Color: " + suitMap.get(getSuit()) 
+	          +" - Color: " + suitMap.get(suit) //we can access suit because it is defined as protected in the super class
 			  +" - Suit: "  + getSuit()
 			  +" - super.toString()=" + super.toString() + "\n";
 	}

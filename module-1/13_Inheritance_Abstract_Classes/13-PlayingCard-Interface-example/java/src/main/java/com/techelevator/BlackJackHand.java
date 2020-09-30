@@ -1,8 +1,9 @@
 package com.techelevator;
 
 import java.util.ArrayList;
+//final on a class indicates that it cannot be inherited (cannot be a super class)
 
-public class BlackJackHand	 implements CardHand {
+public final class BlackJackHand	 implements CardHand {
 
 	private int numCardsInHand = 2;
 	
