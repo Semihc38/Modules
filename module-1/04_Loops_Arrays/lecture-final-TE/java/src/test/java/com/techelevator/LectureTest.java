@@ -7,11 +7,15 @@ import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class LectureTest {
 
-    Lecture exercises = new Lecture();
+    Lecture exercises = new Lecture();  //  instantiante an object for  class with methods to test
 
     @Test
     public void testReturnArray() {
+    	
+    	//expected array created here, method will return an array
         assertArrayEquals(new int[] { 80, 8080, 443 }, exercises.returnArray());
+        int []testArray=new int [] {80,8080,443};//arrange setup test data
+        assertArrayEquals(testArray, exercises.returnArray());//act and assert
     }
 
     @Test
@@ -21,7 +25,8 @@ public class LectureTest {
 
     @Test
     public void testReturnLastElement() {
-        assertEquals("That's not the last element", 443, exercises.returnLastElement());
+    					//error message			//expected value,  actual value returned
+        assertEquals("That's not the last element", 443,           exercises.returnLastElement());
     }
 
     @Test

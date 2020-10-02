@@ -1,11 +1,11 @@
 package com.techelevator;
 
-import org.junit.After; // The @After annotation is used to execute a method after every test
-import org.junit.Assert; // The Assert class has static assertion methods for validating test results
-import org.junit.Before; // The @Before annotation is used to execute a method before every test
-import org.junit.Test; // The @Test annotation is used to label methods that should be run as tests
-import org.junit.FixMethodOrder;
-import org.junit.runners.MethodSorters;
+import org.junit.After;                         // The @After annotation is used to execute a method after every test
+import org.junit.Assert;                       // The Assert class has static assertion methods for validating test results
+import org.junit.Before;                      // The @Before annotation is used to execute a method before every test
+import org.junit.Test;                       // The @Test annotation is used to label methods that should be run as tests
+import org.junit.FixMethodOrder;            // required for this particular example
+import org.junit.runners.MethodSorters;    // required for this particular example
 
 /* Like all other Java code, unit testing code is defined within a class.
  * Each test class will typically contain all of the unit tests for a single
@@ -17,23 +17,25 @@ import org.junit.runners.MethodSorters;
  * production class with "Test" at the end.  For example, the test class
  * for the production class "Foo" would be "FooTest"
  */
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class LectureTest {
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)  // list the test methods in alphabetical order
+public class LectureTest {  //JUnit test are part of a class like everything else in Java
 
 	/* If a method is annotated with @Before, it will be executed immediately prior to every test.
 	 * It is intended to be used when there is a repetitive setup (i.e. "Arrange") task that is
 	 * performed by several tests */
-	@Before
-	public void setup() {
-		System.out.println("setup");
+	
+	@Before 							 // Do this before every test -optional if you have nothing to do before every test, don't code
+	public void setup() { 				 // Method for the @Before processing
+		System.out.println("setup");	// There really is nothing we need to do so we do a display to show something
 	}
 
 	/* If a method is annotated with @After, it will be executed immediately after every test.
 	 * It is intended to be used when there is a repetitive cleanup task that is performed by
 	 * several tests (e.g. deleting temp files, rolling back database transactions, etc) */
-	@After
-	public void teardown() {
-		System.out.println("teardown");
+	
+	@After 								 // do this after every test -optional - if nothing to do after every test  , don't code.
+	public void teardown() {			// method for after processing 
+		System.out.println("teardown");	// There really is nothing we need to do so we do a display to show something
 	}
 
 	/* Each test is implemented as a method with the @Test annotation. When the JUnit
@@ -57,27 +59,28 @@ public class LectureTest {
 	 *     - return void
 	 *     - take no arguments
 	 */
-	@Test
+	@Test// Tells JUnit - here comes a Test , if omitted , JUnit does not see the test so it does not run
 	public void length_returns_the_number_of_characters_in_a_String() {
 		System.out.println("length_returns_the_number_of_characters_in_a_String"); // FOR DEMONSTRATION PURPOSES ONLY, don't do this in your own tests
 
 		/* The assertEquals method validates that two values are equal and
 		 * fails the test if they are not equal */
 
-		String theString = "Java"; // Arrange
-		int length = theString.length(); // Act
-		Assert.assertEquals(4, length); // Assert
+		String theString = "Java"; // Arrange  -setup initialize any data used in test
+		int length = theString.length(); // Act  -execute the method to be tested with the test data
+		Assert.assertEquals(4, length); // Assert  - test to see if the expected result was returned by the method
+	//	Assert.assertEquals(4, theString.length());
 	}
 
 	@Test
 	public void startsWith_returns_true_if_a_string_starts_with_the_specified_characters() {
 		System.out.println("startsWith_returns_true_if_a_string_starts_with_the_specified_characters"); // FOR DEMONSTRATION PURPOSES ONLY, don't do this in your own tests
 
-		/* The assertTrue method validates that the boolean value provided as an arugment
+		/* The assertTrue method validates that the boolean value provided as an argument
 		 * is true and fails the test if it is false. */
 
-		String theString = "Hello World!"; // Arrange
-		boolean startsWithHello = theString.startsWith("Hello"); // Act
+		String theString = "Hello World!"; 							// Arrange  -setup  test data
+		boolean startsWithHello = theString.startsWith("Hello"); 	// Act      - run the method to be tested  using the test data -store result
 
 		/* every assert method allows the first parameter to be a String that contains a message
 		 * that should be displayed when the assertion fails
@@ -85,7 +88,9 @@ public class LectureTest {
 		 * This is particularly helpful with assertTrue as otherwise the failure output would simply
 		 * state "Expected: true Actual: false", which sometimes isn't much help in figuring out
 		 * what went wrong */
-		Assert.assertTrue("String did not start with Hello as expected.", startsWithHello); // Assert
+		
+		//error message if test fails , what to test
+		Assert.assertTrue("String did not start with Hello as expected.", startsWithHello); // Assert  - was the result what was expected?
 	}
 
 	@Test
