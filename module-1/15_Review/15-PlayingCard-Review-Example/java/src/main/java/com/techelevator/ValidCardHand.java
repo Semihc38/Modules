@@ -1,5 +1,7 @@
 package com.techelevator;
 
+
+//interface defines behaviors /methods that must ne implement if a class wants to be a type of this interface 
 public interface ValidCardHand {
 	
 	public void clearHand();                // Remove all cards from a hand

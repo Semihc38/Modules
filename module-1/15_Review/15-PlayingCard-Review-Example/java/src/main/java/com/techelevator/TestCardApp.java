@@ -32,19 +32,19 @@ public class TestCardApp {
 		System.out.println("-- Dealing Cards from Deck                         --");
 		System.out.println("-----------------------------------------------------");
 
-		while (myDeck.anyCardsInDeck())
+		while (myDeck.anyCardsInDeck())//Loop while there are cards in the deck
 			System.out.println(myDeck.dealCard().toString());
 
 		System.out.println("-----------------------------------------------------");
 		System.out.println("-- Dealing Cards to a PokerHand                    --");
 		System.out.println("-----------------------------------------------------");
 
-		myDeck.resetDeck(false);
+		myDeck.resetDeck(false);// get a new deck of cards without Jokers
 		myDeck.shuffleDeck();
 
-		myPokerHand.dealHand(myDeck);
+		myPokerHand.dealHand(myDeck);// deal a PokerHand
 		
-		myPokerHand.show();
+		myPokerHand.show();  //Display the PokerHand 
 		
 		System.out.println("-----------------------------------------------------");
 		System.out.println("-- Sorting PokerHand by Value                      --");

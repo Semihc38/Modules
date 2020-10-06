@@ -13,14 +13,17 @@ public class PlayingCard {
 	 * static so it can be referenced using the class name. ie. no object required
 	 * 
 	 * enum - define a set of constant values that may be referenced as a data type
+	 * assign words to values compiler will treat teh enum like a datatype
+	 * used to make the code easier to understand
+	 * limit values allowed for variables 
 	 ***************************************************************************************************/
-	public static enum CardColor {          
-		BLACK, RED                         
-	};
+	public static enum CardColor {        // words to represent valid colors of a PlayingCard  
+		BLACK, RED                         //Therse are NOT String s they aer names to represet values
+	};										//The CardColor type only allows the values Black and red
 
 	public static enum CardSuit {          // public is OK since they are constants and cannot be changed
 		SPADE, CLUB, HEART, DIAMOND, JOKER // static so it can be referenced using the class name. ie. no object required
-	};
+	};									//CardSuit type may obly  have these values
 
 	public static enum CardValue {
 		JOKER, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING
@@ -33,7 +36,7 @@ public class PlayingCard {
 	 * 
 	 * static so it can be referenced using the class name. ie. no object required
 	 ***************************************************************************************************/
-	
+							//Enum						//enum-name.value
 	protected static final CardValue DEFAULTCARDVALUE = CardValue.JOKER; 
 	protected static final CardColor DEFAULTCOLOR     = CardColor.BLACK;
 	protected static final CardSuit  DEFAULTSUIT      = CardSuit.JOKER;
@@ -43,9 +46,9 @@ public class PlayingCard {
 	 * private to protect as prescribed by encapsulation - method must be used to access the data 
 	 ***************************************************************************************************/
 	
-	private CardValue value;
-	private CardColor color;
-	private CardSuit suit;
+	private CardValue value;	//enum type- copiler will validate the content
+	private CardColor color;	//enum type- copiler will validate the content
+	private CardSuit suit;		//enum type- copiler will validate the content
 
 	/***************************************************************************************************
 	 * Default constructor
@@ -97,7 +100,7 @@ public class PlayingCard {
 	public CardValue setValue(int ivalue) {  // Set the CardValue based on an int value
 		switch (ivalue) {
 		case 1:
-			return CardValue.ONE;
+			return CardValue.ONE;//Since the return statment terminates the method, no break is needed 
 		case 2:
 			return CardValue.TWO;
 		case 3:
