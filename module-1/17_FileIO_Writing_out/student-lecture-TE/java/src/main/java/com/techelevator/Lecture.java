@@ -21,7 +21,7 @@ public class Lecture {
 		 */
 
 		System.out.print("Enter the path of a file or directory >>> ");
-		String path = userInput.nextLine();
+		String path = userInput.nextLine(); // ask the user for a file or directory
 		File f = new File(path);
 
 		/*
@@ -59,6 +59,7 @@ public class Lecture {
 		System.out.print("Enter the path of the new directory >>> ");
 		path = userInput.nextLine();
 		File newDirectory = new File(path);
+		
 
 		if (newDirectory.exists()) {
 			System.out.println("Sorry, " + newDirectory.getAbsolutePath() + " already exists.");
@@ -82,11 +83,11 @@ public class Lecture {
 		String fileName = userInput.nextLine();
 		File newFile = new File(newDirectory, fileName);
 
-		newFile.createNewFile();
+		newFile.createNewFile();// File class mehtod to create a new file
 		System.out.println();
 		System.out.println("name: " + newFile.getName());
 		System.out.println("absolutePath: " + newFile.getAbsolutePath());
-		System.out.println("size : " + newFile.length());
+		System.out.println("size : " + newFile.length()); //.length() indicates number of characters in file 
 
 		/* ************************
 		 * WRITING TO A FILE
@@ -96,6 +97,8 @@ public class Lecture {
 		System.out.println("Now let's write something in the new file.");
 		System.out.print("Enter a message to be stored in the new file >>> ");
 		String message = userInput.nextLine();
+		
+		
 
 		try (PrintWriter writer = new PrintWriter(newFile)) {
 			writer.println(message);

@@ -34,13 +34,13 @@ public class WordSearch {
 		
 		}
 	private static String wordToSearch() {
-		System.out.println("Please enter a word to search in text.");
+		System.out.println("Please enter a word to search in the text.");
 		String word=scan.nextLine();
 		return word;
 		
 	}
 	public static String searchWord(File file,String word) throws FileNotFoundException {
-		System.out.println("Would like to search a word in case sensitive Y(es) / N(o)?");
+		System.out.println("Would like to search a word in case sensitive Yes / No?");
 		String yesOrNo=scan.nextLine().toLowerCase().substring(0,1);
 		
 		Scanner input=new Scanner(file);
