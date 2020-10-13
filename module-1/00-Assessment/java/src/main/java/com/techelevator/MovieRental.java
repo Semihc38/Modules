@@ -12,7 +12,24 @@ public class MovieRental {
 		this.isPremiumMovie = isPremiumMovie;
 		
 	}
-		
+	double VHS =0.99;
+	double DVD =1.99;
+	double BluRay=2.99;
+	
+		public double getRentalPrice() {
+			
+			if(movieFormat.equals("VHS")){
+				 rentalPrice=VHS;
+			}else if(movieFormat.equals("DVD")) {
+				rentalPrice= DVD;
+			}else if(movieFormat.equals("BluRay")) {
+				 rentalPrice=BluRay;
+			}
+			if(isPremiumMovie) {
+				rentalPrice+=1;
+			}
+			return rentalPrice;
+		}
 		public double lateFee(int daysLate) {
 			if(daysLate==0) {
 				return 0.00;
