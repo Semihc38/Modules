@@ -16,7 +16,7 @@ public class MovieRental {
 	double DVD =1.99;
 	double BluRay=2.99;
 	
-		public double getRentalPrice() {
+		public double getRentalPrice(String movieFormat,String isPremiumMovie) {
 			
 			if(movieFormat.equals("VHS")){
 				 rentalPrice=VHS;
@@ -25,7 +25,8 @@ public class MovieRental {
 			}else if(movieFormat.equals("BluRay")) {
 				 rentalPrice=BluRay;
 			}
-			if(isPremiumMovie) {
+			if(isPremiumMovie.equals("true")) {
+				
 				rentalPrice+=1;
 			}
 			return rentalPrice;

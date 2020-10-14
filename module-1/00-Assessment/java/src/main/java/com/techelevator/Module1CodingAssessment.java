@@ -2,11 +2,16 @@ package com.techelevator;
 
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Module1CodingAssessment {
@@ -16,14 +21,16 @@ public class Module1CodingAssessment {
 
 		BufferedReader br=new BufferedReader(
 				new FileReader("MovieInput.csv"));
-	Scanner input=new Scanner(br);
 	String line;
-	List<MovieRental> movieList=new ArrayList<>();
 	while((line=br.readLine())!=null) {
-		String[] splitLine = line.split("\\|");
-//		movieList.add(splitLine[0],splitLine[1],Boolean.parseBoolean(splitLine[2]));
-			
+		double dbl=movieRental.getRentalPrice((line.split("\\,")[1]),
+				(line.split("\\,")[2]));
+		String str=String.valueOf(dbl);
+		line=line+" , "+ str;
+		System.out.println(line);	
 		}
+	br.close();
+	
 	}
-
+	
 }
