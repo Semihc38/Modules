@@ -9,10 +9,14 @@ FROM one
 JOIN two ON one.number = two.number;
 
 --same as (shows inner is default)
-
+SELECT one.number AS one_number, one.description AS one_description, two.number AS two_number, two.description AS two_description
+FROM one
+INNER JOIN two ON one.number = two.number;
 
 --LEFT JOIN (Left outer join)
-
+SELECT one.number AS one_number, one.description AS one_description, two.number AS two_number, two.description AS two_description
+FROM one
+LEFT JOIN two ON one.number = two.number;
 
 --RIGHT JOIN (right outer join)
 

@@ -65,7 +65,7 @@ SELECT population/surfacearea FROM country ORDER BY population/surfacearea DESC;
 -- 15. The population density and life expectancy of the top ten countries with the 
 -- highest life expectancies in descending order. 
 -- (highest life expectancies in world: 83.5, 166.6666, "Andorra")
-SELECT population/surfacearea AS population_density, lifeexpectancy,name FROM country Where lifeexpectancy is not null 
+SELECT population/surfacearea AS population_density, lifeexpectancy,name FROM country WHERE lifeexpectancy is not null 
 ORDER BY lifeexpectancy  DESC  LIMIT 10;
 -- 16. The difference between the previous and current GNP of all the countries in 
 -- the world ordered by the absolute value of the difference. Display both 
@@ -75,7 +75,7 @@ SELECT gnp-gnpold AS pre_and_curr_gnp,Abs(gnp-gnpold),name FROM country ORDER BY
 -- 17. The average population of cities in each country (hint: use city.countrycode)
 -- ordered from highest to lowest.
 -- (highest avg population: 4017733.0000, "SGP")
-SELECT AVG(population)AS avg_pop FROM city GROUP by countrycode ORDER BY  avg_pop DESC;	
+SELECT AVG(population)AS avg_pop FROM city GROUP BY countrycode ORDER BY  avg_pop DESC;	
 -- 18. The count of cities in each state in the USA, ordered by state name.
 -- (45 rows)
 SELECT COUNT( name),district FROM city WHERE countrycode='USA' Group by district ORDER BY district;
@@ -84,14 +84,14 @@ SELECT COUNT( name),district FROM city WHERE countrycode='USA' Group by district
 SELECT COUNT(name) AS count_of_country,continent FROM country GROUP BY continent  ORDER BY count_of_country DESC;
 -- 20. The count of cities in each country ordered from highest to lowest.
 -- (largest number of  cities ib a country: 363, "CHN")
-SELECT COUNT(city),countrycode FROM city group by countrycode ORDER BY count(city)DESC ;
+SELECT COUNT(city),countrycode FROM city GROUP BY countrycode ORDER BY COUNT(city)DESC ;
 -- 21. The population of the largest city in each country ordered from highest to 
 -- lowest.
 -- (largest city population in world: 10500000, "IND")
-SELECT MAX(population),countrycode FROM city group by countrycode ORDER BY max(population) DESC;
+SELECT MAX(population),countrycode FROM city GROUP countrycode ORDER BY MAX(population) DESC;
 -- 22. The average, minimum, and maximum non-null life expectancy of each continent 
 -- ordered from lowest to highest average life expectancy. 
 -- (lowest average life expectancy: 52.5719, 37.2, 76.8, "Africa")
 SELECT AVG(lifeexpectancy),MIN(lifeexpectancy),MAX(lifeexpectancy),continent FROM country 
-where lifeexpectancy is not null
- group by continent order by AVG(lifeexpectancy),MIN(lifeexpectancy),MAX(lifeexpectancy)ASC;
+WHERE lifeexpectancy IS NOT NULL
+GROUP BY continent ORDER BY AVG(lifeexpectancy) ASC;
