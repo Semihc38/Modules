@@ -1,68 +1,70 @@
--- Create a database
-CREATE DATABASE ddlexample;
--- Drop a database
-DROP DATABASE ddlexample;
+START TRANSACTION;
 
--- Create table
-CREATE TABLE example_table (
-        id               SERIAL PRIMARY KEY,
-        username         VARCHAR(100) NOT NULL,
-        first_name       VARCHAR (20),
-        last_name        VARCHAR (20),
-        address_id       INTEGER
+CREATE TABLE departments (
+        dept_id serial,
+        name varchar(255) NOT NULL UNIQUE,
+        CONSTRAINT pk_departments_id PRIMARY KEY (dept_id)   
+ );
+
+CREATE TABLE job_titles (
+        job_id serial,
+        title varchar(255) NOT NULL UNIQUE,
+        CONSTRAINT pk_job_titles_id PRIMARY KEY (job_id)       
 );
--- Drop Table/Drop Table If It Exists
-DROP TABLE  example_table;
-DROP TABLE if exists example_table;
-
--- Alter a table (constraints, structure)
-
--- Add a primary key
-ALTER TABLE  example_table add constraint pk_example_table_id primary key (id);
--- Add a foreign key
-create table address(
-address_id serial primary key
+ 
+CREATE TABLE employees (
+        employee_id serial,
+        first_name varchar(255) NOT NULL,
+        last_name varchar(255) NOT NULL,
+        gender char(1),
+        birthday date,
+        hiredate date NOT NULL,
+        departments_id integer NOT NULL,
+        job_titles_id integer NOT NULL,
+        CONSTRAINT pk_employees_id PRIMARY KEY (employee_id),
+        CONSTRAINT fk_job_titles_id FOREIGN KEY (job_titles_id) REFERENCES job_titles(job_id),
+        CONSTRAINT fk_departments_id FOREIGN KEY (departments_id) REFERENCES departments(dept_id)
 );
-ALTER TABLE  example_table add constraint fk_example_table_address_id foreign key (address_id) references address(address_id);
 
-alter table example_table add constraint uniq_example_table_username unique (username);
--- Add a check
-alter table example_table add constraint chk_example_table_username check(username!='test');
--- Sequences
+CREATE TABLE projects (
+        project_id serial,
+        name varchar(255) NOT NULL UNIQUE,
+        employees_id integer NOT NULL,
+        startdate date NOT NULL,
+        CONSTRAINT pk_projects_id PRIMARY KEY (project_id),
+        CONSTRAINT fk_employees_id FOREIGN KEY (employees_id) REFERENCES employees(employee_id)
+);
+INSERT INTO departments (name) VALUES ('Project Management');
+INSERT INTO departments (name) VALUES ('Reasearch and Development');
+INSERT INTO departments (name) VALUES ('Human Resources');
+INSERT INTO departments (name) VALUES ('Finance'); 
+ 
 
--- Sequence created via serial
+INSERT INTO job_titles (title) VALUES ('Associate');
+INSERT INTO job_titles (title) VALUES ('Developer');
+INSERT INTO job_titles (title) VALUES ('Director');
+INSERT INTO job_titles (title) VALUES ('Manager');
 
--- Sequence created manually
-create sequence custome_seq start 100 increment by 1;
--- Getting next seaquence value
-select nextval('custome_seq');
---Alter sequence 
-alter sequence example_table_id_seq restart 8;
---alter table example_table modify
--- Inserting using sequences
+INSERT INTO employees (first_name,last_name,hiredate,departments_id,job_titles_id) VALUES ('Ben','Bill','2019-01-01',1,1);
+INSERT INTO employees (first_name,last_name,hiredate,departments_id,job_titles_id) VALUES ('Semih','Cetin','2020-12-21',1,3);
+INSERT INTO employees (first_name,last_name,hiredate,departments_id,job_titles_id) VALUES ('William','Day','2003-01-01',2,3);
+INSERT INTO employees (first_name,last_name,hiredate,departments_id,job_titles_id) VALUES ('Elie','Rosario','2004-01-01',2,2);
+INSERT INTO employees (first_name,last_name,hiredate,departments_id,job_titles_id) VALUES ('Nate','Kirk','2005-01-01',3,4);
+INSERT INTO employees (first_name,last_name,hiredate,departments_id,job_titles_id) VALUES ('John','Sonmez','2006-01-01',3,3);
+INSERT INTO employees (first_name,last_name,hiredate,departments_id,job_titles_id) VALUES ('Tim','Vovak','2007-01-01',4,4);
+INSERT INTO employees (first_name,last_name,hiredate,departments_id,job_titles_id) VALUES ('Tyrone','Savage','2008-01-01',4,1); 
 
--- 1 using select nextval
-insert into example_table values((select nextval('example_table_id_seq')),' nocolumnuser','No','Column',null);
-
-select *from example_table;
-insert into example_table values((select nextval('example_table_id_seq')),' nocolumnuser2','No','Column',null);
--- 2 using DEFAULT
-insert into example_table values(default,  'dwfaultsequser','Example','Default',null);
--- 3 omitting id field
-insert into example_table(username,first_name,last_name)values ('omituser', 'example','omit');
-alter sequence example_table_id_seq restart 12;
-insert into example_table(12,'manualsequser3','example','manual3',null);
--- You can insert ids manually but that should be avoided if you are using sequences. Here's why:
-
--- Insert a row using hardcoded id after last id value
-
--- Now Insert using the sequence... what happens?
-
--- How do you resolve this?
+INSERT INTO projects (name,employees_id,startdate) VALUES ('VendingMachine',10,'2013-06-10');
+INSERT INTO projects (name,employees_id,startdate) VALUES ('FleepApp',11,'2011-09-10');
+INSERT INTO projects (name,employees_id,startdate) VALUES ('Vytrack',12,'2009-06-11');
+INSERT INTO projects (name,employees_id,startdate) VALUES ('DataSecure',13,'2017-08-10');
 
 
--- Sequences and rollbacks
-start transaction;
-insert into example_table(username,first_name,last_name)values ('transactionuser', 'example','transaction');
-rollback;
+SELECT * FROM projects;
+SELECT * FROM job_titles;
+SELECT * FROM departments;
+SELECT * FROM employees;
 
+ ROLLBACK;
+ 
+ COMMIT;
