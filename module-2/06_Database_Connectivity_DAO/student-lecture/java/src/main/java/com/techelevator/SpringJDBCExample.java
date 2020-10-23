@@ -58,7 +58,7 @@ public class SpringJDBCExample {
 		
 		/* The first parameter to the "queryForRowSet" method is a String containing a parameterized SQL statement
 		 * Any following parameters are used to replace query placeholders (i.e. '?') in the order in which they appear */
-		String category = "Action";
+		String category = "Drama";
 		results = dvdstoreJdbcTemplate.queryForRowSet(sqlFilmsByCategory, category);
 		
 		System.out.println();

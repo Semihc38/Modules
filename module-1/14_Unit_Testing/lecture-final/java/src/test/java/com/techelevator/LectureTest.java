@@ -69,7 +69,7 @@ public class LectureTest {    // JUnits test are part of a class - like everythi
 
 		String theString = "Java";       // Arrange - setup, initialize any data used in the test
 		int length = theString.length(); // Act     - execute the method to be tested with the test data
-		Assert.assertEquals(5, length);  // Assert  - test to see if the expected result was returned by the method
+		Assert.assertEquals(4, length);  // Assert  - test to see if the expected result was returned by the method
 //		Assert.assertEquals(4,theString.length()); // Combined the Act and Assert in the same statement
 	}
 
@@ -81,7 +81,7 @@ public class LectureTest {    // JUnits test are part of a class - like everythi
 		 * is true and fails the test if it is false. */
 
 		String theString = "Hello World!";                       // Arrange - setup test data
-		boolean startsWithHello = theString.startsWith("Heallo"); // Act - run the method to be tested using the test data - store result
+		boolean startsWithHello = theString.startsWith("Hello"); // Act - run the method to be tested using the test data - store result
 
 		/* every assert method allows the first parameter to be a String that contains a message
 		 * that should be displayed when the assertion fails
