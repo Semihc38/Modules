@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.sql.SQLException;
 
@@ -82,6 +83,34 @@ public class JdbcContactDaoTest {
 		assertNotNull(resultContact);
 		assertEquals(newContact.getId(),resultContact.getId());
 		assertEquals(newContact.getFirstName(),resultContact.getFirstName());
+	}
+	@Test
+	public void create_withValidData_shouldInsert() {
+		Contact extraContact = getContact("extraName","extraLastName","5343543","extra@gmail.com",1990);
+		extraContact=jdbcContactDao.create(extraContact);
+		Contact result = jdbcContactDao.getContactById(extraContact.getId());
+		Integer expected =extraContact.getId();
+		String expectedEmail=extraContact.getEmail();
+		assertEquals(expected,result.getId());
+		assertEquals(expectedEmail,result.getEmail());
+	}
+	@Test
+	public void update_withValidData_shouldUpdate() {
+		setupContact.setFirstName("UpdatedName");
+		String expectedFirstName="UpdatedName";
+		jdbcContactDao.update(setupContact);
+		Contact result= jdbcContactDao.getContactById(setupContact.getId());
+		assertEquals(expectedFirstName,result.getFirstName());
+		
+		
+	}
+	@Test
+	public void delete_withExistingContact_shouldDelete() {
+		Integer setupContactId=setupContact.getId();
+		jdbcContactDao.delete(setupContact);
+		Contact result=jdbcContactDao.getContactById(setupContactId);
+		assertNull(result);
+		
 	}
 	
 	private Contact getContact(String firstName, String lastName, String phone,

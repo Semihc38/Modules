@@ -62,16 +62,18 @@ public class JDBCEmployeeDAO implements EmployeeDAO {
 
 	@Override
 	public List<Employee> getEmployeesWithoutProjects() {
-		String query ="SELECT * FROM employee e "
-				+"LEFT JOIN project_employee pe ON pe.employee_id = e.employee_id"
-				+"WHERE project_id IS NULL";
-		SqlRowSet rowSet =jdbcTemplate.queryForRowSet(query);
-		List<Employee>employeeWithoutProjects=new ArrayList<>();
-		while(rowSet.next()) {
-			Employee employee= mapRowToEmployee(rowSet);
-			employeeWithoutProjects.add(employee);
+		List<Employee> employees = new ArrayList<>();
+		String sqlGetEmployeesWithoutProjects = "SELECT e.employee_id, e.department_id, e.first_name, e.last_name, e.birth_date, e.gender, e.hire_date "
+											  + "FROM employee as e " + "LEFT JOIN project_employee as pe " 
+											  + "on e.employee_id = pe.employee_id "
+											  + "WHERE pe.employee_id IS null;";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetEmployeesWithoutProjects);
+
+		while (results.next()) {
+			Employee theEmployee = mapRowToEmployee(results);
+			employees.add(theEmployee);
 		}
-		return employeeWithoutProjects;
+		return employees;
 	}
 
 	@Override
