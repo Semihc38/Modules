@@ -45,12 +45,32 @@ public class App {
     }
 
     public static Auction[] findAuctionsSearchTitle() {
-        Auction[] auctionsSearchTitle= restTemplate.getForObject(API_URL+"?title_like=Zero", Auction[].class);
-        return auctionsSearchTitle;
+    	String searchTitle = "";
+        
+        System.out.print("Please enter auction title keyword(s): ");
+        
+        try {
+        	searchTitle = scanner.nextLine();
+        } catch (Exception e) {
+			System.out.println("Please enter valid keywords.");
+		}
+        
+    	Auction[] auction = restTemplate.getForObject(API_URL + "?title_like=" + searchTitle, Auction[].class);
+    
+        return auction;
     }
 
     public static Auction[] findAuctionsSearchPrice() {
-        Auction[] auctionsPrice = restTemplate.getForObject(API_URL+"?currentBid_lte=23.25", Auction[].class);
+    	double searchPrice=0.00;
+    	System.out.print("Please enter a price for auction: ");
+    	try {
+    		searchPrice=Double.parseDouble(scanner.nextLine());
+    	}catch(Exception e){
+    		System.out.println("Please enter a valid price");
+    		return null;
+    	}
+    	
+        Auction[] auctionsPrice = restTemplate.getForObject(API_URL+"?currentBid_lte="+searchPrice, Auction[].class);
         return auctionsPrice;
     }
 
@@ -84,6 +104,7 @@ public class App {
             System.out.println("\nPress Enter to continue...");
             scanner.nextLine();
             printGreeting();
+            
         }
     }
 
@@ -123,5 +144,4 @@ public class App {
             System.out.println("");
         }
     }
-
 }

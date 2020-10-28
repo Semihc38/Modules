@@ -68,18 +68,58 @@ public class AuctionService {
     }
 
     public Auction add(String auctionString) {
-        // place code here
-        return null;
+       
+    	Auction addAuction=  makeAuction(auctionString);
+        if(addAuction==null) {
+        	console.printError("Invalid data for an Auction ");
+        	return null;
+        } 	
+        try {
+        HttpHeaders theHeader = new HttpHeaders(); 
+        theHeader.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity anEntity= new HttpEntity(addAuction, theHeader);
+        addAuction=restTemplate.postForObject(BASE_URL, anEntity, Auction.class);
+       } catch (RestClientResponseException ex) {
+           console.printError("No auctions found. Please try again.");
+           return null;
+       } catch (ResourceAccessException ex) {
+           console.printError("A network error occurred.");
+           return null;
+       }
+        return addAuction;
     }
 
     public Auction update(String auctionString) {
-        // place code here
+        Auction updateAuction= makeAuction(auctionString);
+        if(updateAuction==null) {
+        	console.printError("Invalid data for an Auction ");
+        	return null;
+        }try {
+        HttpHeaders theHeader = new HttpHeaders();
+        theHeader.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity anEntity= new HttpEntity(updateAuction, theHeader);
+        
+        restTemplate.put(BASE_URL+ "/"+updateAuction.getId(),anEntity);
+        } catch (RestClientResponseException ex) {
+        console.printError("No auctions found. Please try again.");
         return null;
+        } catch (ResourceAccessException ex) {
+        console.printError("A network error occurred.");
+        return null;
+        }
+        
+        return updateAuction;
     }
 
     public boolean delete(int id) {
-    	// place code here
-    	return false; 
+    	try {
+    		restTemplate.delete(BASE_URL+"/"+ id);
+    		return true; 
+    	}catch(Exception e) {
+    		return false;
+    	}
+    	
+    	
     }
 
     private HttpEntity<Auction> makeEntity(Auction auction) {
