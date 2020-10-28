@@ -12,17 +12,19 @@ public class App {
     public static void main(String[] args) {
         int menuSelection = 999;
         int hotelId = -1;
-
+        
+// instantiate service objects to handle console and hotel interactions
+        
         ConsoleService consoleService = new ConsoleService();
-        HotelService hotelService = new HotelService(API_BASE_URL);
+        HotelService    hotelService  = new HotelService(API_BASE_URL);
 
         while (menuSelection != 0) {
-            menuSelection = consoleService.printMainMenu();
+            menuSelection = consoleService.printMainMenu();// use consoleService to display a menu
             if(menuSelection == 1) {
                 // List all hotels
-                Hotel[] hotels = hotelService.listHotels();
+                Hotel[] hotels = hotelService.listHotels();// use hotelservice to get a list of Hotels
                 if( hotels != null ){
-                    consoleService.printHotels(hotels);
+                    consoleService.printHotels(hotels);// use consoleService to print Hotels
                 }
             } else if(menuSelection == 2) {
                 // List Reservations for hotel

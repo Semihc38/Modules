@@ -28,8 +28,39 @@ public class HotelService {
    * @return Reservation
    */
   public Reservation addReservation(String newReservation) {
-    // TODO: Implement method
-    return null;
+    //add a reservation to the API - we need to use HTTP post request 
+	  // when we do a post we need to put the data in request body 
+	  
+	  // create a reservation object from the STring passed into this method
+	  // using the helper method makeReservation defined below
+    Reservation aReservation = makeReservation(newReservation);
+    if(aReservation==null) {
+    	console.printError("Invalid data for a reservation ");
+    	return null;
+    }
+    // now that we have a reservation object we need to send to server via API
+    // using an HTTP POSt request
+    // a post request requires headers to tell the server about the request
+    // and the data for the request has to be in the body of request
+    HttpHeaders theHeader = new HttpHeaders(); // instantiate an object for request headers
+ // telling the server we sending a JSON data in the request body
+    theHeader.setContentType(MediaType.APPLICATION_JSON);// mediaType is a group of constants
+    													// for datatypes you can send to server
+    // so we have the object to send to the server and the headers to describe the data
+    //all that's left is to combine them into an http request using httpEntity class
+    
+    HttpEntity anEntity= new HttpEntity(aReservation, theHeader);
+    
+    // call the API with a POST request to add a reservation to the server
+    
+    // the API will return the Reservation object that was added to the server
+    //use the PostForObject method to issue a POST request with restTemplate
+    
+    
+    aReservation = restTemplate.postForObject(BASE_URL+ "reservations",anEntity,  Reservation.class);
+    
+    
+    return aReservation;
   }
 
   /**
@@ -40,8 +71,22 @@ public class HotelService {
    * @return
    */
   public Reservation updateReservation(String CSV) {
-    // TODO: Implement method
-    return null;
+    
+	  Reservation aReservation= makeReservation(CSV); // create a new reservation from the parameter
+	  if(aReservation==null) {
+		  console.printError("Invalid data for reservation ");
+		  return null;
+	  }
+	  HttpHeaders theHeaders= new HttpHeaders();
+	  theHeaders.setContentType(MediaType.APPLICATION_JSON);
+	  HttpEntity anEntity =new HttpEntity(aReservation, theHeaders);
+	  
+	  // Http put does not return any data - so there is nothing to store when it returns
+	   restTemplate.put(BASE_URL+ "reservations/"+ aReservation.getId(),anEntity,  anEntity);
+	  
+	  
+	   
+    return aReservation;
   }
 
   /**
@@ -50,7 +95,11 @@ public class HotelService {
    * @param id
    */
   public void deleteReservation(int id) {
-    // TODO: Implement method
+	  
+	  /// delete does not require and data in the body of the request nor does it return antuynig\
+	  // all we do is call API with URL required to identify what you want to delete
+	  restTemplate.delete(BASE_URL+"reservations/"+ id);
+
   }
 
   /* DON'T MODIFY ANY METHODS BELOW */

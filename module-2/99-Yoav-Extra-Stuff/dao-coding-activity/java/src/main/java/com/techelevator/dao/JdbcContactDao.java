@@ -28,9 +28,10 @@ public class JdbcContactDao implements ContactDao {
 		
 		jdbcTemplate.update(query, nextId,contact.getFirstName(),
 				contact.getLastName(),contact.getPhone(),contact.getEmail(),contact.getBirthYear());
-		contact.setId(nextId);
+//		contact.setId(nextId);
 		
-		
+		System.out.println(nextId);
+		System.out.println(contact.getId());
 		return contact;
 	}
 	private Integer getNextContactId() {

@@ -24,15 +24,15 @@ public class AddressBook {
 		Contact contact=dao.getContactById(6);
 		//System.out.println(contact);
 //		
-//		Contact newContact =new Contact();
-//		
-//		newContact.setFirstName("Will");
-//		newContact.setLastName("rowwood");
-//		newContact.setEmail("barrow234@gmail.com");
-//		newContact.setPhone("312-980-2344");
-//		newContact.setBirthYear(1990);
-//		
-//		dao.create(newContact);
+		Contact newContact =new Contact();
+		
+		newContact.setFirstName("BBill");
+		newContact.setLastName("rowwood");
+		newContact.setEmail("barrow234@gmail.com");
+		newContact.setPhone("312-980-2344");
+		newContact.setBirthYear(1990);
+		
+		dao.create(newContact);
 		
 //		List<Contact>contactList=dao.getAllContacts();
 //		
@@ -44,7 +44,7 @@ public class AddressBook {
 //		dao.update(contact);
 	
 		
-			dao.delete(contact);
+//			dao.delete(contact);
 		
 	
 	}

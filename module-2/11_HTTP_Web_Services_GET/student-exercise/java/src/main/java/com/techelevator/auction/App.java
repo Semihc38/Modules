@@ -24,23 +24,34 @@ public class App {
     }
 
     public static Auction[] listAllAuctions() {
-        // api code here
-        return null;
+       Auction[] allAuctionList= restTemplate.getForObject(API_URL, Auction[].class);
+       return allAuctionList;
     }
 
     public static Auction listDetailsForAuction() {
-        // api code here
-        return null;
+    	int id = 0;
+       	
+    	System.out.print("Please enter an auction ID: ");
+    	
+    	try {
+    		id = Integer.parseInt(scanner.nextLine());
+    		
+        } catch (NumberFormatException e) {
+			System.out.println("Please enter a valid auction ID.");
+			return null;
+		}      	  
+    	Auction detailsAuction = restTemplate.getForObject(API_URL + "/" + id, Auction.class);
+    	return detailsAuction;
     }
 
     public static Auction[] findAuctionsSearchTitle() {
-        // api code here
-        return null;
+        Auction[] auctionsSearchTitle= restTemplate.getForObject(API_URL+"?title_like=Zero", Auction[].class);
+        return auctionsSearchTitle;
     }
 
     public static Auction[] findAuctionsSearchPrice() {
-        // api code here
-        return null;
+        Auction[] auctionsPrice = restTemplate.getForObject(API_URL+"?currentBid_lte=23.25", Auction[].class);
+        return auctionsPrice;
     }
 
     private static void run() {
