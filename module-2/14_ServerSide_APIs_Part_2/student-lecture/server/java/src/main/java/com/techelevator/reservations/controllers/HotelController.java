@@ -16,12 +16,24 @@ import java.util.List;
 @RestController
 public class HotelController {
 
-    private HotelDAO hotelDAO;
+    private HotelDAO hotelDAO;	//
     private ReservationDAO reservationDAO;
 
+    
+    
+  //the ctor assign object to the hotelDAo and reservation dao reference using 
+    // parameters passed to it
+    // where do the object for the parameters come from
+    //normally the parameters are passed when the class is instantiated
+    // we are using spring DI to instantiate DAO objects
+    //and pass them to this ctor
+    // Spring MVC instantiate the controller for us.
+    // The DAOs require the @Component annotation to tell Spring they should be dependency injected when used
     public HotelController(HotelDAO hotelDAO, ReservationDAO reservationDAO) {
-        this.hotelDAO = hotelDAO;
-        this.reservationDAO = reservationDAO;
+        this.hotelDAO = hotelDAO;		//Assign the parameter passed
+        this.reservationDAO = reservationDAO;//Assign the parameter passed
+        
+        
     }
 
     /**
@@ -85,7 +97,9 @@ public class HotelController {
      */
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/hotels/{id}/reservations", method = RequestMethod.POST)
-    public Reservation addReservation(@RequestBody Reservation reservation, @PathVariable("id") int hotelID)
+    
+    //Add Valid tell String  to use the validation annotation in the class when assgingin data to the object
+    public Reservation addReservation(@Valid @RequestBody Reservation reservation, @PathVariable("id") int hotelID)
             throws HotelNotFoundException {
         return reservationDAO.create(reservation, hotelID);
     }
@@ -93,13 +107,23 @@ public class HotelController {
     /**
      * /hotels/filter?state=oh&city=cleveland
      *
+     *
+     *@RequestParam - access the data in the query String
      * @param state the state to filter by
      * @param city  the city to filter by
      * @return a list of hotels that match the city & state
      */
+    // This method handle  the path/hotels/filter
     @RequestMapping(path = "/hotels/filter", method = RequestMethod.GET)
-    public List<Hotel> filterByStateAndCity(@RequestParam String state, @RequestParam(required = false) String city) {
-
+    														//value is optional or required
+    														//if value is same with variable name it is not mandetory
+    public List<Hotel> filterByStateAndCity(@RequestParam (value="district",defaultValue="ohio")String state, 
+    										@RequestParam(required = false) String city) {
+    	//@RequestParam - go get the variable listed form the query string &What follows in? question mark
+    	//              - get the value in state from the query string and store it in the variable state in the method
+     						//@RequestParam - go get the variable listed form the query string &What follows in? question mark
+    						//              - get the value in city from the query string and store it in the variable city in the method
+    						// Required = false - the parameter may be missing ( it is not required)
         List<Hotel> filteredHotels = new ArrayList<>();
         List<Hotel> hotels = list();
 

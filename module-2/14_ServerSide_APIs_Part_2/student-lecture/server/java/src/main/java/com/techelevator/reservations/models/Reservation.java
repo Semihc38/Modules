@@ -3,15 +3,22 @@ package com.techelevator.reservations.models;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class Reservation {
-
+	@Min(value=0)  //Defining validation criteria for the values using Validation Annotation
     private int id;
+	@Min (value=0)
     private int hotelID;
+	@NotEmpty
     private String fullName;
+	@NotEmpty
     private String checkinDate;
+	@NotEmpty
     private String checkoutDate;
+	@Min(value=1, message="You must have at least one quest for the room")
+	@Max(value=4, message="You must have max four quest for the room")
     private int guests;
 
     public Reservation() {
