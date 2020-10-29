@@ -11,6 +11,8 @@ public interface ReservationDAO {
 
     Reservation get(int reservationID);
 
+    
+    // the create method will receive a reservation and hotelid and return a reservations
     Reservation create(Reservation reservation, int hotelID);
 
 }
