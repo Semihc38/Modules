@@ -1,9 +1,12 @@
 package com.techelevator.api.review.client;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 
 import com.techelevator.api.review.client.model.Department;
 import com.techelevator.api.review.client.model.DepartmentDAO;
@@ -141,8 +144,18 @@ public class ProjectsCLI {
 	}
 
 	private void handleListAllDepartments() {
+		//Changed on 10/30/2020 to call api to get the data instead of database 
 		printHeading("All Departments");
-		List<Department> allDepartments = departmentDAO.getAllDepartments();
+		
+		// To get data form an API we will use a restTemplate to api call
+		RestTemplate apiCall=new RestTemplate();
+		
+		
+		//call the api to array of generic response- getForEntity instead of getForObject
+		ResponseEntity<Department[]> responseEntity =
+				apiCall.getForEntity("http://localhost:8080/departments",Department[].class);
+		// take the response data and convert it to a List		
+		List<Department> allDepartments =  Arrays.asList(responseEntity.getBody());
 		listDepartments(allDepartments);
 	}
 
@@ -193,7 +206,16 @@ public class ProjectsCLI {
 
 	private void handleListAllEmployees() {
 		printHeading("All Employees");
-		List<Employee> allEmployees = employeeDAO.getAllEmployees();
+		
+		// To get data form an API we will use a restTemplate to api call
+		RestTemplate apiCall=new RestTemplate();
+		
+		
+		//call the api to array of generic response- getForEntity instead of getForObject
+		ResponseEntity<Employee[]> responseEntity =
+				apiCall.getForEntity("http://localhost:8080/employees",Employee[].class);
+		// take the response data and convert it to a List		
+		List<Employee> allEmployees =  Arrays.asList(responseEntity.getBody());
 		listEmployees(allEmployees);
 	}
 

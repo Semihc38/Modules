@@ -13,7 +13,9 @@ import java.util.Random;
 
 public class HotelService {
 
-  public static String AUTH_TOKEN = "";
+	// Not OK, this is public because it's set outside this class by the app login proccess
+  public static String AUTH_TOKEN = "";// Hold the JWT for user login
+  
   private final String INVALID_RESERVATION_MSG = "Invalid Reservation. Please enter the Hotel Id, Full Name, Checkin Date, Checkout Date and Guests";
   private final String BASE_URL;
   private final RestTemplate restTemplate = new RestTemplate();
@@ -132,8 +134,11 @@ public class HotelService {
   public Reservation[] listReservationsByHotel(int hotelId) throws HotelServiceException {
     Reservation[] reservations = null;
     try {
-      reservations = restTemplate.exchange(BASE_URL + "hotels/" + hotelId + "/reservations", HttpMethod.GET,
-          makeAuthEntity(), Reservation[].class).getBody();
+    	// Make the API call using an Authorization Entity 
+      reservations = restTemplate.exchange(BASE_URL + "hotels/" + hotelId + "/reservations"
+    		  								, HttpMethod.GET// do an HTTP GET
+    		  								, makeAuthEntity()// with an Authorization entity
+    		  								, Reservation[].class).getBody(); // store the response in a Reservation object
     } catch (RestClientResponseException ex) {
       throw new HotelServiceException(ex.getRawStatusCode() + " : " + ex.getResponseBodyAsString());
     }
@@ -197,7 +202,7 @@ public class HotelService {
   private HttpEntity<Reservation> makeReservationEntity(Reservation reservation) {
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.APPLICATION_JSON);
-    headers.setBearerAuth(AUTH_TOKEN);
+    headers.setBearerAuth(AUTH_TOKEN);				// include JWT the header for making a reservation
     HttpEntity<Reservation> entity = new HttpEntity<>(reservation, headers);
     return entity;
   }
@@ -207,11 +212,15 @@ public class HotelService {
    * 
    * @return {HttpEntity}
    */
-  private HttpEntity makeAuthEntity() {
-    HttpHeaders headers = new HttpHeaders();
-    headers.setBearerAuth(AUTH_TOKEN);
-    HttpEntity entity = new HttpEntity<>(headers);
-    return entity;
+  // Create the Headers for an HTTP Request  related to authorization
+  // Like in Postman when you set the authorization values for Bearer Token
+  private HttpEntity makeAuthEntity() {		// Create an authorization Header for request
+    HttpHeaders headers = new HttpHeaders();// Define an HTTP Header
+    headers.setBearerAuth(AUTH_TOKEN); 		// Set the Bearer Token in the header to JWT
+    										// we got form the app at login
+    HttpEntity entity = new HttpEntity<>(headers);// Create an HTTP Entity to be include in the request
+    											
+    return entity; 							// return the entity we created
   }
 
 }

@@ -17,6 +17,9 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+@PreAuthorize("isAuthenticated()")// only allow authenticated users access to this method
+								  // no path this controller class may be accessed unless authenticated
+									// unless the controller method has permitAll assigned to it
 @RestController
 public class HotelController {
 
@@ -33,6 +36,7 @@ public class HotelController {
      *
      * @return a list of all hotels in the system
      */
+    @PreAuthorize("permitAll")//Allow anyone to access this path, authenticated or not
     @RequestMapping(path = "/hotels", method = RequestMethod.GET)
     public List<Hotel> list() {
         return hotelDAO.list();
@@ -44,6 +48,10 @@ public class HotelController {
      * @param id the id of the hotel
      * @return all info for a given hotel
      */
+    // add authorization to this method by only allowing authenticated users to access
+    //an authenticated user is one who passes their valid JWT with the API request
+    //users may obtain a valid JWT by logging into this application
+   // @PreAuthorize("isAuthenticated()")// only allow authenticated users access to this method
     @RequestMapping(path = "/hotels/{id}", method = RequestMethod.GET)
     public Hotel get(@PathVariable int id) {
         return hotelDAO.get(id);
@@ -65,6 +73,11 @@ public class HotelController {
      * @param id
      * @return a single reservation
      */
+    //Restrict access to this controller method to user in the role admin
+    // we don't want to anybody to see a reservation
+    // ("hasRole('String')")
+    @PreAuthorize("hasRole('ADMIN')")// note that Admin is in single quotes and the parameter is in ""
+    								// when you have String embedded in a String ,use ''around inner
     @RequestMapping(path = "reservations/{id}", method = RequestMethod.GET)
     public Reservation getReservation(@PathVariable int id) throws ReservationNotFoundException {
         return reservationDAO.get(id);
@@ -114,10 +127,16 @@ public class HotelController {
      * @param id
      * @throws ReservationNotFoundException
      */
+    @PreAuthorize("hasRole('ADMIN')")// note that Admin is in single quotes and the parameter is in ""
+	// when you have String embedded in a String ,use ''around inner
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/reservations/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable int id) throws ReservationNotFoundException {
-        auditLog("delete", id, "username");
+    // principal is a class containing user login informantion - provided by Spring security
+    // we cna ask Spring security to give us a copy of the Principal for the current user
+    // add a principal object to the parameter list of the controller method
+    // use  the principal object.getName() to access the user name of the current
+    public void delete(@PathVariable int id,  Principal userInfo) throws ReservationNotFoundException {
+        auditLog("delete", id, userInfo.getName()); // Log the HTTP Request using the user name of current user
         reservationDAO.delete(id);
     }
 
@@ -162,7 +181,7 @@ public class HotelController {
      */
     private void auditLog(String operation, int reservation, String username) {
         System.out.println(
-                "User: " + username + "performed the operation: " + operation + "on reservation: " + reservation);
+                "User: " + username + " performed the operation: " + operation + " on reservation: " + reservation);
     }
 
 }

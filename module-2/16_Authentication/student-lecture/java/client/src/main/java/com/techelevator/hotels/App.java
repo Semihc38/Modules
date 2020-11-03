@@ -56,12 +56,25 @@ public class App {
                         hotelService.deleteReservation(reservationId);
                     }
                 } else if (menuSelection == 6) {
+                	// get the login information from the user using consoleService
+                	
                     String credentials = consoleService.promptForLogin();
+                    //be sure the credentials are exacty two String separated by a comma
                     if( credentials.split(",").length == 2 ) {
+                    	//Use the authendication service provided to login the user
+                    	// this login service method is expecting an Stirngs with the "username,password"
+                    	//This login mehtod returns a ResponseEntity Map
+                    	//The Map contains various vlaues related to the login
                         ResponseEntity<Map> response = authenticationService.login(credentials);
+                        // if the response form the login method has a body ...
                         if (response.hasBody()) {
+                        	// get the value form the Map with the key "token"
+                        	// which contains  the JWT 
                             String token = (String) response.getBody().get("token");
+                            // tell the HotelService the JWT -
+                            //assign the JWT to the value
                             hotelService.AUTH_TOKEN = token;
+                            //Conratulate user on successfully
                             System.out.println("Login Successful");
                         }
                     } else {
