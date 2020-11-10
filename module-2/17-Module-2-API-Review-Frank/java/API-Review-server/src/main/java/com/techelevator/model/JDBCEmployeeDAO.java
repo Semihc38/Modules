@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import com.techelevator.model.Employee;
 import com.techelevator.model.EmployeeDAO;
 @Component
+
 public class JDBCEmployeeDAO implements EmployeeDAO {
 
 	private JdbcTemplate jdbcTemplate;  // Define an object to access the JDBC DAO methods

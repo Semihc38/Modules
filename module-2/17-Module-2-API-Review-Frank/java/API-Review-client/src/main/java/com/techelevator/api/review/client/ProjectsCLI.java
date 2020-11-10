@@ -83,7 +83,7 @@ public class ProjectsCLI {
 	
 	private AuthenticatedUser currentUser;
 	
-	private static final String BASE_API_URL = "http://localhost:8080";
+	private static final String API_SERVER = "http://localhost:8080";
 	
 	public static void main(String[] args) {
 		ProjectsCLI application = new ProjectsCLI();
@@ -94,7 +94,7 @@ public class ProjectsCLI {
 	public ProjectsCLI() {
 		this.menu = new Menu(System.in, System.out);
 		this.console = new ConsoleService(System.in, System.out);
-		this.authenticationService = new AuthenticationService(BASE_API_URL);
+		this.authenticationService = new AuthenticationService(API_SERVER);
 		// postgres is a Data Base Mangager which contains many databases which contains many tables
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setUrl("jdbc:postgresql://localhost:5432/projects");
@@ -221,7 +221,7 @@ public class ProjectsCLI {
 		RestTemplate apiCall = new RestTemplate();
 		
 		// Call the APi to array of generic response - getForEntity instead of getForObject
-		ResponseEntity<Department[]> responseEntity = apiCall.getForEntity("http://localhost:8080/departments",Department[].class);
+		ResponseEntity<Department[]> responseEntity = apiCall.getForEntity(API_SERVER+"http://localhost:8080/departments",Department[].class);
 		
 		// Take the response data and convert it to a List
 		List<Department> allDepartments =  Arrays.asList(responseEntity.getBody());
