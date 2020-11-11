@@ -1,0 +1,79 @@
+html{/* style everything in the html tag*/
+
+    height: 100%; /* all elements should fill 100% of  their box*/
+    font-size: 17px; /* all font sizes should be 16px*/
+
+}
+*{/*style all elements in the file */
+box-sizing: border-box; /* make the width and height relative to border of the box not the content*/
+user-select: none;
+}
+body{
+    /* force a horizontal scroll bar */
+    white-space: nowrap;/* do not wrap the screen content;*/
+    background-image:linear-gradient(to bottom #858c90 #BBB);
+    background-repeat:no-repeat ;
+    background-attachment: fixed;
+    font-family: 'Raleway',sans-serif;
+    background-color: gray;
+    
+}
+header{
+    position: fixed;
+    top: 0;
+    height: 50px;
+
+}
+header > h1, header > p{/* style the header element's child h1-tag and header element's child p-tags */
+    display: inline-block;/* change the display style so they will be next to each other*/
+    height: 20px;
+    vertical-align: middle; /* align content to middle of it's block*/
+    padding-right: 20px;
+    color: rgba(255,255,255.8);
+    border-right: 1px solid rgba(255,255,255,.5);/* put vertical bar between the entries*/
+}
+header >h1{
+    text-transform: uppercase;
+    font-size: 1.1rem;
+
+}
+header > p{
+    font-size: .9rem;
+    padding-left: 5px;
+}
+main{
+    background-color: gray;
+    margin-top: 50px;/* start main content right after the header which is 50px high*/
+}
+div.trello-list{
+display: inline-block;
+width: 300px;
+margin-right: 10px;
+vertical-align: top;
+background-color: #DDD;
+border-radius: 2px 3px;
+}
+div.trello-list h2{/* style the h2 in the divs with class trello-list*/
+    margin:8px;
+    font-size: 1.0em;
+    font-weight: bold;
+
+}
+div.trello-list ol{
+    margin:0px;
+    padding:0px;
+}
+div.trello-list li{
+    list-style: none;/*don't display the number of each list item*/
+    background-color: rgba(255,255,255);/*set the background color to white*/
+    font-size: .9rem;
+    border-radius: 1px;
+    margin-bottom: 10px;
+    padding: 10px;
+    white-space: normal;
+    
+}
+div.trello-list li:hover{/*style when the cursor hovers on an item pseudo class a:hover */
+    background-color: rgba(9, 45, 66, .1);
+
+}
