@@ -1,0 +1,38 @@
+body,
+#hero footer,
+#featured section,
+#featured section article div,
+#all-items section,
+#all-items section article{
+    display: flex;
+}
+body,
+#all-items section article{
+    flex-direction: column;
+}
+body{
+    align-items: center;
+}
+#featured section article {
+    justify-content: center;
+     
+}
+#all-items section article  {
+justify-content: center;
+}
+#hero footer{
+justify-content: space-between;
+align-items: center;
+}
+#all-items article:nth-child(even)div:first-child{/* style based on a child's position-
+                                                    this the style for the div child in article*/
+   order: 2;
+}
+#all-items article:nth-child(even){
+    flex-direction: row-reverse;
+}
+@media screen and (max-width:512px){
+    #featured section {
+        flex-wrap: wrap;
+    }
+}

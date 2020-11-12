@@ -110,7 +110,6 @@ div.trello-list a:hover { /* style when the cursor hovers on an anchor link item
     background-color:orange;
 }
 
-
 /* Scrollbar */
 body::-webkit-scrollbar {
     width: 10px;

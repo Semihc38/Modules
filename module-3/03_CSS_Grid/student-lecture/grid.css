@@ -1,0 +1,52 @@
+.container { /* style the content of the page*/
+    display: grid;/* tell the browser we want to make a grid*/
+    grid-template-columns:1fr 3fr 1fr ;/*Define the columns in the gird*/
+    grid-template-areas: /*  assign names to  the columns and which grid area they apply to*/
+"header   header  header"
+"menu-nav main    upcoming-events"
+"footer   footer  footer"
+;
+grid-gap: 10px;
+}
+header{
+    grid-area: header;/*assign the element to the grid area named header*/
+}
+nav#menu-nav{/* style the name with id=menu-nav*/
+    grid-area: menu-nav;/*assign the element to the grid area named menu-nav*/
+
+}
+main{
+    grid-area: main;
+}
+aside{
+    grid-area: upcoming-events;
+}
+footer{
+    grid-area: footer;
+}
+/*add responsive stuyling to the page*/
+
+@media screen and (max-width:768px){
+.container{/*style the content of the page for smaller screen*/
+grid-template-areas: /*redefine the grid*/
+"header"
+"menu-nav"
+"main"
+"upcoming-events"
+"footer"
+;
+grid-template-columns: 1fr;
+}    
+
+}
+@media screen and(max-width: 200px) {
+    .container{/*style the content of the page for smaller screen*/
+        grid-template-areas: /*redefine the grid*/
+        "header"
+        "menu-nav"
+        "main"
+      
+        ;
+        grid-template-columns: 1fr;
+}
+}
