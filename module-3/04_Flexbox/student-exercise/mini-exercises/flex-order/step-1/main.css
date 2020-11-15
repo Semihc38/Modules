@@ -17,13 +17,15 @@ body {
   margin: 0 10px;
 }
 .bio{
+  display: flex;
+  justify-content:space-around;
   flex-direction: column;
 }
 
-.bio:nth-child(2) img {
+.bio:nth-child(even)  {
   flex-direction: row-reverse;
+ 
 }
-.bio{
-  display: flex;
-
+.bio:nth-child(odd){
+  flex-direction: row;
 }
