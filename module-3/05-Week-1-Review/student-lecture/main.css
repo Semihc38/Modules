@@ -1,8 +1,10 @@
-:root {
-    --orange: #f7921c;
+:root {/*-These can be used or apply to the css file not the html-*/
+ /*variable may be used in css to provide common characteristics across rules
+  /*Assigning a variable to a color*/
     --grey: #f2f2f4;
     --dark-grey: rgba(50, 53, 62, 0.05);
     --black: rgba(60, 60, 60, 1);
+    --orange: #f7921c;
   }
   
   html {
@@ -26,7 +28,7 @@
   }
   
   a {
-    color: var(--black);
+    color: var(--black);/*use the variable black for the color*/
     text-decoration: none;
   }
   
@@ -38,5 +40,82 @@
     display: block;
     margin: 0 auto;
   }
+  body{
+    display: grid;/*tells the browser we want to use grid layout*/
+    grid-template-columns: 1fr 2fr 2fr 2fr 2fr 1fr ;/*styling grid with 6 columns*/
+  grid-template-areas: 
+  ". banner banner nav nav ."
+  ". main main main main ."
+  ". order-now order-now store store ."
   
+  ;
+  grid-gap: 10px;
   
+  }
+  header{
+    grid-area: banner;
+  }
+  nav{
+    grid-area: nav;
+  }
+  main{
+    grid-area: main;
+  }
+  #order-now{
+    grid-area: order-now;
+  }
+  #store{
+    grid-area: store;
+  }
+  /*now that we have the element placed in their grid-area we need to style each element*/
+  nav{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+  }
+  nav ul {
+    display: flex;
+    justify-content: space-between;
+  }
+  nav ul li{
+    list-style: none;
+   background-color:var(--orange);
+   
+   width: 30%;
+   line-height: 50px;
+   border-radius: 8px;
+   text-align: center;
+   text-transform: uppercase;
+  }
+  main{
+    display: flex;
+    background-color: var(--grey);
+  }
+  main img{
+    width: 35%;
+    height: 350px;
+    object-fit: cover;
+  }
+  .content{
+    margin-left: 20px;
+    
+  }
+  #store{
+    background-color: var(--grey);
+  }
+  #order-now{
+    background-color: var(--grey);
+  }
+
+  #store h3{
+    text-align: center;
+  }
+#store a{
+  background-color: var(--black);
+  width: 20%;
+  line-height: 50px;
+  border-radius: 5px;
+  color: var(--grey);
+  text-align: center;
+  text-transform: uppercase;
+}

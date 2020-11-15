@@ -7,7 +7,7 @@ body,
     display: flex;
 }
 body,
-#all-items section article{
+#all-items section {
     flex-direction: column;
 }
 body{

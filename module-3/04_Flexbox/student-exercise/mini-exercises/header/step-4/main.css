@@ -38,8 +38,32 @@ li a:hover {
   text-decoration: underline;
 }
 
-.spacer {}
-
 .my-account img {
   width: 32px;
+}
+header{
+  display: grid;
+  grid-template-columns: 1fr 3fr 3fr 3fr 1fr ;
+  grid-template-areas:
+  "logo city city city city user"
+  ;
+}
+.logo{
+  grid-area: logo;
+}
+nav ul{
+  grid-area: city;
+}
+.my-account{
+  grid-area: user;
+}
+
+nav ul{
+  display: flex;
+  justify-content: flex-end;
+}
+.my-account{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }

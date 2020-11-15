@@ -1,5 +1,5 @@
 body {
-  margin: 20px;
+  margin: 40px;
   padding: 0;
   font-family: 'Oswald', sans-serif;
   font-size: 2.5em;
@@ -8,6 +8,7 @@ body {
 .container {
   background-color: #F0F0F0;
   height: 500px;
+  
 }
 
 .box {
@@ -15,4 +16,9 @@ body {
   background-color: #00AFEF;
   color: #fff;
   border: solid 1px #777;
+}
+.container{
+  display: flex;
+ align-items: center;
+ 
 }

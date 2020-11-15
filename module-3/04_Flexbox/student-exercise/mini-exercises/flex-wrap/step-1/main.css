@@ -20,3 +20,8 @@ body {
   text-align: center;
   border: solid 1px #777;
 }
+.container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+}
