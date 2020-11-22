@@ -101,11 +101,12 @@ function addReviewer(parent, name) {
 function addRating(parent, numberOfStars) {
   const theRating=document.createElement('div');
   theRating.setAttribute('class','rating')
+
 for(let i=0; i<numberOfStars; i++){// loop for the value in rating for the book
   const aStar=document.createElement('img');
-aStar.setAttribute('class','ratingStar');
-aStar.src='img/star.png';
-theRating.appendChild(aStar);
+  aStar.setAttribute('class','ratingStar');
+  aStar.src='img/star.png';
+  theRating.appendChild(aStar);
 }
 parent.appendChild(theRating);
 

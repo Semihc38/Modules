@@ -17,7 +17,7 @@ let reviews = [
  */
 function setPageTitle() {
   const pageTitle = document.getElementById('page-title');
-  pageTitle.querySelector('.name').innerHTML = name;
+  pageTitle.querySelector('.name').innerText = name;
 }
 
 /**
