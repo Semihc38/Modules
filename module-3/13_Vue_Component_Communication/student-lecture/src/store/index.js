@@ -1,9 +1,9 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue'  // give me access to the Vue code
+import Vuex from 'vuex' // give me access to teh Vuex 
 
-Vue.use(Vuex)
+Vue.use(Vuex) // tell  Vue I am using Vuex
 
-export default new Vuex.Store({
+export default new Vuex.Store({// instantiate a Vuex data store
   state: {
     name: 'Cigar Parties for Dummies',
     description: 'Host and plan the perfect cigar party for all of your squirrelly friends.',
@@ -42,13 +42,17 @@ export default new Vuex.Store({
         favorited: false
       }
     ],
-  },
-  mutations: {
+  },// end of state object
+  mutations: {// processes to make changes to the data store - used by  components
+
+    //the data store to use is automatically passed to mutation as 1st parameter
+    // we chose to call it state in this code
+
     ADD_REVIEW(state, review) {
       state.reviews.unshift(review);
     },
-    UPDATE_FILTER(state, filter) {
-      state.filter = filter;
+    UPDATE_FILTER(state, newFilter) {
+      state.filter = newFilter;
     },
     FLIP_FAVORITED(state, reviewToChange) {
       reviewToChange.favorited = ! reviewToChange.favorited;
@@ -58,5 +62,5 @@ export default new Vuex.Store({
   },
   modules: {
   },
-  strict: true
+  strict: true //should the rule about only mutations can change data in the store be enforced?
 })

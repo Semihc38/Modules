@@ -8,15 +8,18 @@
 <script>
 export default {
   name: "star-summary",
-  props: ["rating"],
+  props: ["rating"],// props means the data is coming from and external source
+                      // in this case it's coming from App.vue  as an attribute rating=""
   methods: {
     updateFilter() {
 
+      // call the data store mutation to change the filter value with the rating as an int
+this.$store.commit("UPDATE_FILTER",parseInt(this.rating));
     }
   },
   computed: {
     numberOfReviews() {
-      const reviews = [];
+      const reviews = this.$store.state.reviews;// get the reviews from this app's vuex data store
       return reviews.reduce((currentCount, review) => {
         return currentCount + (review.rating === parseInt(this.rating) ? 1 : 0);
       }, 0);

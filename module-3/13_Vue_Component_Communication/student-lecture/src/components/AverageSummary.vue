@@ -10,12 +10,12 @@ export default {
   name: "average-summary",
   methods: {
     updateFilter() {
-
+      this.$store.commit("UPDATE_FILTER",0);
     }
   },
   computed: {
     averageRating() {
-      const reviews = [];
+      const reviews = this.$store.state.reviews;// go get the reviews from the vuex data store
       let sum = reviews.reduce((currentSum, review) => {
         return currentSum + review.rating;
       }, 0);

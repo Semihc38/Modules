@@ -6,36 +6,42 @@
 
     <div class="well-display">
       <div class="well">
-        <span class="amount">{{ averageRating }}</span>
+        <span class="amount" v-on:click="filter=0" >{{ averageRating }}</span>
         Average Rating
       </div>
 
       <div class="well">
-        <span class="amount">{{ numberOfOneStarReviews }}</span>
+        <!--  add an event to the span so its clickable  -->
+        <!--  when it's clicked we will set a variable to the number of stars-->
+        <span class="amount" v-on:click="filter=1">{{ numberOfOneStarReviews }}</span>
         1 Star Review{{ numberOfOneStarReviews === 1 ? '' : 's' }}
       </div>
 
       <div class="well">
-        <span class="amount">{{ numberOfTwoStarReviews }}</span>
+        <span class="amount" v-on:click="filter=2">{{ numberOfTwoStarReviews }}</span>
         2 Star Review{{ numberOfTwoStarReviews === 1 ? '' : 's' }}
       </div>
 
       <div class="well">
-        <span class="amount">{{ numberOfThreeStarReviews }}</span>
+        <span class="amount" v-on:click="filter=3">{{ numberOfThreeStarReviews }}</span>
         3 Star Review{{ numberOfThreeStarReviews === 1 ? '' : 's' }}
       </div>
 
       <div class="well">
-        <span class="amount">{{ numberOfFourStarReviews }}</span>
+        <span class="amount" v-on:click="filter=4">{{ numberOfFourStarReviews }}</span>
         4 Star Review{{ numberOfFourStarReviews === 1 ? '' : 's' }}
       </div>
 
       <div class="well">
-        <span class="amount">{{ numberOfFiveStarReviews }}</span>
+        <span class="amount" v-on:click="filter=5">{{ numberOfFiveStarReviews }}</span>
         5 Star Review{{ numberOfFiveStarReviews === 1 ? '' : 's' }}
       </div>
     </div>
 
+
+<!-- Only display the showForm link if the variable showForm is false-->
+<!-- v-if controls the display of an element-->
+<!-- if condintion is true the element is display, if false, its not-->
     <a
       id="show-form-button"
       href="#"
@@ -73,7 +79,7 @@
     <div
       class="review"
       v-bind:class="{ favorited: review.favorited }"
-      v-for="review in reviews"
+      v-for="review in filterReviews"
       v-bind:key="review.id"
     >
       <h4>{{ review.reviewer }}</h4>
@@ -107,6 +113,7 @@ export default {
       description:
         "Host and plan the perfect cigar party for all of your squirrelly friends.",
       showForm: false,
+      filter:0,// used to filter the ratings that are displayed
       newReview: {},
       reviews: [
         {
@@ -149,7 +156,7 @@ export default {
       let sum = this.reviews.reduce((currentSum, review) => {
         return currentSum + review.rating;
       }, 0);
-      return sum / this.reviews.length;
+      return (sum / this.reviews.length).toFixed(1);// calculate the average and round to 1 decimal place
     },
     numberOfOneStarReviews() {
       return this.numberOfReviews(this.reviews, 1);
@@ -165,7 +172,24 @@ export default {
     },
     numberOfFiveStarReviews() {
       return this.numberOfReviews(this.reviews, 5);
+    },
+    filterReviews(){// filter reviews based on the value in the variable
+    //.filter return true if the element its given should be result, false if not
+    //This will return an array of reviews that match the filter variable
+    return this.reviews.filter((a)=>{//use anon-func wiht filter to get elements- send each element one at a time
+      return a.rating===this.filter || this.filter===0;// return true if rating === filter false if not
+      //alternate
+      // if(aReview.rating===filter){
+      //   return true;
+      // }
+      // else{
+      //   return false;
+      // }
+
+      })
+
     }
+
   },
   methods: {
     numberOfReviews(reviews, starType) {
