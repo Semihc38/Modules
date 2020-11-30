@@ -3,16 +3,16 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  state: {
-    activeProduct: 0,
-    filter: 0,
-    products: [
+export default new Vuex.Store({  // vuex Centralized Data Store for the app
+  state: {                        // The object that holds the data
+    activeProduct: 0,             // Product id of th product currently active in the app
+    filter: 0,                     // used to filter reviews currently displayed
+    products: [                   // Array of objects with the Products info available for display
       {
-        id: 1,
+        id: 1, // product id of the product
         name: "Cigar Parties for Dummies",
         description: "Host and plan the perfect cigar party for all of your squirrelly friends.",
-        reviews: [
+        reviews: [// each product contains an array of objects containing reviews
           {
             reviewer: 'Malcolm Gladwell',
             title: 'What a book!',
