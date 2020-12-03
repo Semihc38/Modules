@@ -30,7 +30,7 @@
 
 <script>
 import boardsService from "../services/BoardService";
-import moment from "moment";
+import moment from "moment";//Access the moment for formatting
 
 export default {
   name: "card-form",
@@ -62,7 +62,7 @@ export default {
         status: this.card.status,
         tag: this.card.tag,
         avatar: "https://randomuser.me/api/portraits/lego/1.jpg",
-        date: moment().format("MMM Do YYYY")
+        date: moment().format("MMM Do YYYY")// format date as jul 4th 2020
       };
 
       if (this.cardID === 0) {
@@ -88,22 +88,27 @@ export default {
             if (response.status === 200) {
               this.$router.push(`/board/${newCard.boardId}`);
             }
-          })
-          .catch(error => {
-            this.handleErrorResponse(error, "updating");
+          })//catch errrors form API call - an object containing info about the error is passed to the .catch
+          //similar to Exception handling in Java
+          .catch(error => {// if there was an error in the api call
+            this.handleErrorResponse(error, "updating");// call this method in our code with the error object
           });
       }
     },
     cancelForm() {
       this.$router.push(`/board/${this.$route.params.boardID}`);
     },
+    // Common API error handling routine 
+    //Two types of Api error that may occur
+    //request error- meaing something was wrong in typing to get to the server
+    //response error- meaning you got to the server, but what there was something wrong with what you asked it to do
     handleErrorResponse(error, verb) {
-      if (error.response) {
-        this.errorMsg =
-          "Error " + verb + " card. Response received was '" +
+      if (error.response) {                                     //         if it was response error
+        this.errorMsg =                                        // Set our erroMsg attribute to some verbiage
+          "Error " + verb + " card. Response received was '" + // and the text teh server sent from the response
           error.response.statusText +
-          "'.";
-      } else if (error.request) {
+          "'.";                                               // with a '.' at the end
+      } else if (error.request) {                             //if it was request error
         this.errorMsg =
           "Error " + verb + " card. Server could not be reached.";
       } else {
