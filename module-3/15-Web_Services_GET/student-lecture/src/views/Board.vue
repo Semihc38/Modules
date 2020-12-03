@@ -1,5 +1,5 @@
 <template>
-  <cards-list />
+  <cards-list /><!--display CardDisplay.vue component-->
 </template>
 
 <script>

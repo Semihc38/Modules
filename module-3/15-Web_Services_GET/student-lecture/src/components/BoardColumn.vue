@@ -2,6 +2,7 @@
   <div class="board">
     <h2>{{ title }}</h2>
     <div class="cards">
+      <!-- display each card with an event handler that executes the viewCardDetails function with card id-->
       <div
         class="card"
         v-for="card in cards"
@@ -26,9 +27,11 @@
 <script>
 export default {
   name: 'board-column',
-  props: ['title', 'cards', 'boardID'],
-  methods: {
+  props: ['title', 'cards', 'boardID'],  // data values coming from an external source
+  methods: {// function executed when called
     viewCardDetails(cardID) {
+      // push to the browser the path:/board/boardID-props/card/cardID-passed
+      //                              /board/12345/card/3
       this.$router.push(`/board/${this.boardID}/card/${cardID}`);
     },
     getTagClass(tag) {

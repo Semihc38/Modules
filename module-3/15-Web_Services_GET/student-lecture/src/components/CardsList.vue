@@ -1,3 +1,4 @@
+<!--This will display in the CardList.vue component-->
 <template>
   <div>
     <h1>{{ title }}</h1>
@@ -5,6 +6,9 @@
       <img src="../assets/squirrel.gif" />
     </div>
     <div class="boards" v-else>
+
+      <!--the word "planned" for the cards props in BoardColumn.vue-->
+      <!--the value in the id parameter from the path for boardID props in BoardColumn.vue-->
       <board-column
         title="Planned"
         v-bind:cards="planned"
@@ -38,16 +42,17 @@ export default {
   },
   data() {
     return {
-      title: '',
-      cards: [],
-      isLoading: true
+      title: '', //title for the card
+      cards: [],// data displayed in the page - loaded from API call
+      isLoading: true // switch to indicate is page is loading or not
     };
   },
-  created() {
-    boardsService.getCards(this.$route.params.id).then(response => {
-      this.title = response.data.title;
-      this.cards = response.data.cards;
-      this.isLoading = false;
+  created() {// tell vue to do these things before the page is displayed
+  // call the getCards boardsService with the id from the path and wait for the API call to complete(.then)
+    boardsService.getCards(this.$route.params.id).then(response => {// when API is done pass a function the response data
+      this.title = response.data.title;//Assing title the title from the response
+      this.cards = response.data.cards;//Assing cards the cards from the response
+      this.isLoading = false;// indicate we are done loading the data from teh API
     });
   },
   computed: {
