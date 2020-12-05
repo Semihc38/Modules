@@ -529,7 +529,7 @@
     {
       "id": 77,
       "topicId": 1,
-      "title": "morbi vestibulum",
+      "title": "hot topic",
       "messageText": "quis libero nullam sit amet turpis elementum ligula vehicula consequat morbi a ipsum integer a nibh in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio condimentum"
     },
     {
@@ -669,6 +669,12 @@
       "topicId": 17,
       "title": "magnis dis parturient montes",
       "messageText": "nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in"
+    },
+    {
+      "id": 825,
+      "topicId": 1,
+      "title": "",
+      "messageText": ""
     }
   ]
 }

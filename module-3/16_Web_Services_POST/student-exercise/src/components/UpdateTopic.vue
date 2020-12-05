@@ -12,7 +12,6 @@
 
 <script>
 import topicService from "../services/TopicService";
-
 export default {
   name: "create-topic",
   props: ["topicID"],
@@ -24,7 +23,11 @@ export default {
   methods: {
     updateTopic() {
       const topic = { id: this.topicID, title: this.title };
-      // call topic service update method
+      topicService.update(topic.id, topic).then(response =>{
+        if(response.status == 200){
+          this.$router.push("/")
+        }
+      })
     }
   },
   created() {
